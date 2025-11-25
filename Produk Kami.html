@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skincare Terbaik - Produk</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #f7f3f1; }
+    .product-card { transition: transform 0.3s ease; }
+    .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05); }
+
+    /* Dropdown fix */
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+
+    /* Modal animation */
+    .animate-fadeIn {
+      animation: fadeIn 0.3s ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+
+  <script>
+    let selectedProduct = "";
+
+    function openModal(productName) {
+      selectedProduct = productName;
+      document.getElementById("modalProductName").innerText = productName;
+      document.getElementById("buyModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("buyModal").classList.add("hidden");
+    }
+
+    function confirmCheckout() {
+      let qty = document.getElementById("productQty").value;
+      let payment = document.getElementById("paymentMethod").value;
+
+      alert(
+        "Pembelian Berhasil!\n\n" +
+        "Produk: " + selectedProduct + "\n" +
+        "Jumlah: " + qty + "\n" +
+        "Metode Pembayaran: " + payment
+      );
+
+      closeModal();
+    }
+
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { primary: '#E91E63', secondary: '#FFEBEE', 'dark-text': '#333333', 'light-bg': '#f7f3f1' }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="text-dark-text">
+
+  <!-- NAVBAR -->
+  <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between h-16 items-center">
+      <span class="text-2xl font-bold text-primary">SKINCARE ANIMETE</span>
+
+      <div class="space-x-8 hidden sm:flex">
+        <a href="index.html" class="text-gray-500 hover:text-primary">Beranda</a>
+
+        <div class="relative dropdown h-full flex items-center">
+          <a href="Produk Kami.html" class="text-primary font-medium flex items-center hover:text-pink-700">
+            Produk
+            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </a>
+
+          <div class="dropdown-menu hidden absolute bg-white shadow-xl py-2 rounded-lg w-40 top-full mt-0 z-50 border border-gray-100">
+            <a href="#perawatan-wajah" class="block px-4 py-2 text-sm hover:bg-secondary">Perawatan Wajah</a>
+            <a href="#perawatan-tubuh" class="block px-4 py-2 text-sm hover:bg-secondary">Perawatan Tubuh</a>
+          </div>
+        </div>
+
+        <a href="kontak.html" class="text-gray-500 hover:text-primary">Kontak</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="max-w-7xl mx-auto p-6 space-y-10">
+    <h2 class="text-4xl font-extrabold text-center text-primary">Katalog Produk Unggulan</h2>
+    <p class="text-center text-lg text-gray-600">Pilih perawatan terbaik untuk wajah dan tubuh Anda.</p>
+
+    <!-- PERAWATAN WAJAH -->
+    <h3 id="perawatan-wajah" class="text-3xl font-bold border-b-2 border-primary pb-2 mt-10">Perawatan Wajah</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+      <!-- 1 -->
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-primary">
+        <img src="assets/serum.jpg" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold">Brightening Serum</h3>
+        <p class="text-primary font-semibold text-lg">Rp 150.000</p>
+        <p class="text-sm text-gray-500">Mencerahkan & menyamarkan noda hitam.</p>
+        <button onclick="openModal('Brightening Serum')" class="w-full bg-primary text-white py-2 mt-4 rounded-full">Beli Sekarang</button>
+      </div>
+
+      <!-- 2 -->
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-primary">
+        <img src="assets/moist.jpg" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold">Hydrating Moisturizer</h3>
+        <p class="text-primary font-semibold text-lg">Rp 120.000</p>
+        <p class="text-sm text-gray-500">Gel lembap 24 jam tanpa lengket.</p>
+        <button onclick="openModal('Hydrating Moisturizer')" class="w-full bg-primary text-white py-2 mt-4 rounded-full">Beli Sekarang</button>
+      </div>
+
+      <!-- 3 -->
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-primary">
+        <img src="assets/ss.jpg" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold">Daily Sunscreen SPF50</h3>
+        <p class="text-primary font-semibold text-lg">Rp 90.000</p>
+        <p class="text-sm text-gray-500">Perlindungan UVA/UVB yang ringan.</p>
+        <button onclick="openModal('Daily Sunscreen SPF50')" class="w-full bg-primary text-white py-2 mt-4 rounded-full">Beli Sekarang</button>
+      </div>
+
+    </div>
+
+    <!-- PERAWATAN TUBUH -->
+    <h3 id="perawatan-tubuh" class="text-3xl font-bold border-b-2 border-primary pb-2 mt-10">Perawatan Tubuh</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+      <!-- 4 -->
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-primary">
+        <img src="assets/bodylotion.jpg" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold">Scented Body Lotion</h3>
+        <p class="text-primary font-semibold text-lg">Rp 85.000</p>
+        <p class="text-sm text-gray-500">Lotion lembut, melembapkan intensif.</p>
+        <button onclick="openModal('Scented Body Lotion')" class="w-full bg-primary text-white py-2 mt-4 rounded-full">Beli Sekarang</button>
+      </div>
+
+      <!-- 5 -->
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-primary">
+        <img src="assets/body scrub.avif" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold">Exfoliating Body Scrub</h3>
+        <p class="text-primary font-semibold text-lg">Rp 110.000</p>
+        <p class="text-sm text-gray-500">Mengangkat sel kulit mati & mencerahkan.</p>
+        <button onclick="openModal('Exfoliating Body Scrub')" class="w-full bg-primary text-white py-2 mt-4 rounded-full">Beli Sekarang</button>
+      </div>
+
+      <!-- 6 (yang tadinya hilang) -->
+      <div class="product-card bg-white p-6 rounded-2xl shadow-lg border-t-4 border-primary">
+        <img src="assets/hand cream.png" class="w-full h-48 object-cover rounded-xl mb-4">
+        <h3 class="text-xl font-bold">Intensive Hand Cream</h3>
+        <p class="text-primary font-semibold text-lg">Rp 65.000</p>
+        <p class="text-sm text-gray-500">Melembapkan & melindungi tangan ekstra kering.</p>
+        <button onclick="openModal('Intensive Hand Cream')" class="w-full bg-primary text-white py-2 mt-4 rounded-full">Beli Sekarang</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL DIPINDAHKAN KE LUAR GRID (FIX UTAMA) -->
+  <div id="buyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+    <div class="bg-white p-6 rounded-2xl max-w-sm w-full shadow-xl animate-fadeIn">
+
+      <h2 class="text-2xl font-bold mb-4 text-primary">Pembelian Produk</h2>
+
+      <p class="font-semibold">Produk:</p>
+      <p id="modalProductName" class="text-lg font-bold mb-4"></p>
+
+      <label class="font-semibold">Jumlah:</label>
+      <input id="productQty" type="number" min="1" value="1" class="w-full border rounded-lg px-3 py-2 mb-4">
+
+      <label class="font-semibold">Metode Pembayaran:</label>
+      <select id="paymentMethod" class="w-full border rounded-lg px-3 py-2 mb-4">
+        <option>Transfer Bank</option>
+        <option>COD (Bayar di Tempat)</option>
+        <option>Dana</option>
+        <option>OVO</option>
+        <option>Gopay</option>
+      </select>
+
+      <div class="flex justify-end gap-3">
+        <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 rounded-lg">Batal</button>
+        <button onclick="confirmCheckout()" class="px-4 py-2 bg-primary text-white rounded-lg">Konfirmasi</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-dark-text text-white mt-12 py-6 text-center text-sm">
+    &copy; SKINCARE ANIMETE.
+  </footer>
+
+</body>
+</html>
